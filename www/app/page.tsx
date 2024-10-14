@@ -6,7 +6,7 @@ type Friend = {
 };
 export default async function Home() {
   const data = await fetchGraphQL(FRIENDS_QUERY);
-
+  console.log(data);
   if (!data || !data.friends) {
     return <div>No friends found</div>;
   }
