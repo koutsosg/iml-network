@@ -1,8 +1,7 @@
 import { createClient, cacheExchange, fetchExchange } from "@urql/core";
 
-// Utility to create a reusable GraphQL client
-export const makeClient = () =>
-  createClient({
+export const makeClient = () => {
+  return createClient({
     url: process.env.NEXT_PUBLIC_HASURA_PROJECT_ENDPOINT as string,
     fetchOptions: {
       headers: {
@@ -11,3 +10,4 @@ export const makeClient = () =>
     },
     exchanges: [cacheExchange, fetchExchange],
   });
+};

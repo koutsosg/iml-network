@@ -1,6 +1,6 @@
 export const FRIENDS_QUERY = `
   query {
-    friend {
+    friends {
       name
     }
   }

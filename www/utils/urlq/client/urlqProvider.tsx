@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 import {
   UrqlProvider,
   cacheExchange,
@@ -30,3 +30,4 @@ export function ClientProvider({ children }: Props) {
     </UrqlProvider>
   );
 }
+ */
