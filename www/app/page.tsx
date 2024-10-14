@@ -1,6 +1,3 @@
-import { GetServerSideProps } from "next";
-import Image from "next/image";
-
 export default async function Home() {
   let friends;
 
