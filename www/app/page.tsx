@@ -18,12 +18,22 @@ export default async function Home() {
         }),
       }
     );
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching data: ${response.status} ${response.statusText}`
+      );
+    }
+
     const result = await response.json();
-    const data = result.data;
-    friends = data.friend;
-    console.log(result);
-  } catch (e) {
-    console.log(e);
+
+    // Handle the data if it's correctly parsed
+    if (result.data && result.data.friend) {
+      friends = result.data.friend;
+    } else {
+      throw new Error("Invalid data received from Hasura.");
+    }
+  } catch (error) {
+    console.error("Error during fetch:", error);
   }
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
