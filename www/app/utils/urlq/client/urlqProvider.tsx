@@ -1,4 +1,4 @@
-/* "use client";
+"use client";
 import {
   UrqlProvider,
   cacheExchange,
@@ -6,15 +6,11 @@ import {
   fetchExchange,
   ssrExchange,
 } from "@urql/next";
-import { Suspense, useMemo } from "react";
+import { useMemo } from "react";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export function ClientProvider({ children }: Props) {
+export function ClientProvider({ children }: React.PropsWithChildren) {
   const [client, ssr] = useMemo(() => {
-    const ssr = ssrExchange({ isClient: false });
+    const ssr = ssrExchange({ isClient: typeof window !== "undefined" });
     const client = createClient({
       url: process.env.NEXT_PUBLIC_HASURA_PROJECT_ENDPOINT as string,
       exchanges: [cacheExchange, ssr, fetchExchange],
@@ -30,4 +26,3 @@ export function ClientProvider({ children }: Props) {
     </UrqlProvider>
   );
 }
- */

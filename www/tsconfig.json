@@ -112,7 +112,10 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "app/layout.js"
+    "app/layout.tsx",
+    "app/components/Friend.tsx",
+    "app/page.tsx",
+    "app/utils/urlq/client/urlqProvider.tsx"
   ],
   "exclude": ["node_modules"]
 }

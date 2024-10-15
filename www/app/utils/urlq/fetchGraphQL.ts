@@ -1,10 +1,11 @@
 import { makeClient } from "./server/client";
+import { registerUrql } from "@urql/next/rsc";
 
 export async function fetchGraphQL(query: string, variables = {}) {
-  const client = makeClient();
+  const { getClient } = registerUrql(makeClient);
   try {
-    const result = await client.query(query, variables).toPromise();
-
+    const result = await getClient().query(query, variables).toPromise();
+    console.log("Raw GraphQL Result:", result);
     if (result.error) {
       console.error("GraphQL Error:", result.error.graphQLErrors);
       console.error("Network Error:", result.error.networkError);
@@ -14,6 +15,6 @@ export async function fetchGraphQL(query: string, variables = {}) {
     return result.data;
   } catch (error) {
     console.error("Fetch error:", error);
-    return null;
+    return {};
   }
 }
