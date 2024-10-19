@@ -1,1 +1,6 @@
-[]
+- "!include public_episode_images.yaml"
+- "!include public_episode_persons.yaml"
+- "!include public_episodes.yaml"
+- "!include public_persons.yaml"
+- "!include public_podcast_persons.yaml"
+- "!include public_podcasts.yaml"

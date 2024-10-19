@@ -1,0 +1,18 @@
+table:
+  name: persons
+  schema: public
+array_relationships:
+  - name: episode_persons
+    using:
+      foreign_key_constraint_on:
+        column: person_id
+        table:
+          name: episode_persons
+          schema: public
+  - name: podcast_persons
+    using:
+      foreign_key_constraint_on:
+        column: person_id
+        table:
+          name: podcast_persons
+          schema: public

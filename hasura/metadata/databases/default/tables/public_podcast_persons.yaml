@@ -1,0 +1,10 @@
+table:
+  name: podcast_persons
+  schema: public
+object_relationships:
+  - name: person
+    using:
+      foreign_key_constraint_on: person_id
+  - name: podcast
+    using:
+      foreign_key_constraint_on: podcast_id

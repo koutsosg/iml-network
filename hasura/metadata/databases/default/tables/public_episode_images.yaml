@@ -1,0 +1,7 @@
+table:
+  name: episode_images
+  schema: public
+object_relationships:
+  - name: episode
+    using:
+      foreign_key_constraint_on: episode_id

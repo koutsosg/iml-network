@@ -1,0 +1,22 @@
+table:
+  name: episodes
+  schema: public
+object_relationships:
+  - name: podcast
+    using:
+      foreign_key_constraint_on: podcast_id
+array_relationships:
+  - name: episode_images
+    using:
+      foreign_key_constraint_on:
+        column: episode_id
+        table:
+          name: episode_images
+          schema: public
+  - name: episode_persons
+    using:
+      foreign_key_constraint_on:
+        column: episode_id
+        table:
+          name: episode_persons
+          schema: public
