@@ -1,8 +1,7 @@
-export const FRIENDS_QUERY = `
-  query {
-    friends {
-      id
-      name
-    }
+export const PODCASTSQUERY = `
+query myPodcast {
+  podcasts {
+    title
   }
+}
 `;
