@@ -1,0 +1,9 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- DROP TABLE IF EXISTS episode_images CASCADE;
+-- DROP TABLE IF EXISTS episode_persons CASCADE;
+-- DROP TABLE IF EXISTS podcast_persons CASCADE;
+-- DROP TABLE IF EXISTS episodes CASCADE;
+-- DROP TABLE IF EXISTS podcasts CASCADE;
+-- DROP TABLE IF EXISTS persons CASCADE;
+-- DROP TABLE IF EXISTS podcasts2 CASCADE;
