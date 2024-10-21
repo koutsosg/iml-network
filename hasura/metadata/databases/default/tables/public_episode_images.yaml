@@ -5,3 +5,14 @@ object_relationships:
   - name: episode
     using:
       foreign_key_constraint_on: episode_id
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - image_url
+        - id
+        - image_description
+        - created_at
+        - episode_id
+      filter: {}
+    comment: ""

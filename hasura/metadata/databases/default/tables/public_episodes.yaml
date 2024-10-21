@@ -20,3 +20,25 @@ array_relationships:
         table:
           name: episode_persons
           schema: public
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - keywords
+        - media_length
+        - author
+        - chapters_type
+        - chapters_url
+        - episode_type
+        - image_href
+        - link
+        - media_type
+        - media_url
+        - title
+        - season
+        - description
+        - pub_date
+        - id
+        - podcast_id
+      filter: {}
+    comment: ""

@@ -1,17 +1,16 @@
 import { redirect } from "next/navigation";
-
+import LogInForm from "../../../components/loginForm";
+import { cookies } from "next/headers";
 export default async function LogIn() {
-  const isAdminLoggedIn = true;
-
-  if (!isAdminLoggedIn) {
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("authToken")?.value;
+  if (authToken) {
     redirect("/dashboard");
   }
-
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div className="capitalize ">Login</div>
-      </main>
+    <div className="login-container">
+      <h1>Login</h1>
+      <LogInForm />
     </div>
   );
 }

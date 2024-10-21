@@ -8,3 +8,12 @@ object_relationships:
   - name: podcast
     using:
       foreign_key_constraint_on: podcast_id
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - id
+        - person_id
+        - podcast_id
+      filter: {}
+    comment: ""

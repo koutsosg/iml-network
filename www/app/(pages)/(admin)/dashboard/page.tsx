@@ -1,15 +1,33 @@
+import { cookies } from "next/headers";
 import { fetchGraphQL } from "../../../utils/urlq/fetchGraphQL";
 import { PODCASTSQUERY } from "../../../utils/urlq/queries";
 import { redirect } from "next/navigation";
-
+import jwt from "jsonwebtoken";
+import LogOutButton from "../../../components/logout";
 export default async function Dashboard() {
-  const isAdminLoggedIn = true;
-
-  if (!isAdminLoggedIn) {
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("authToken")?.value;
+  const data = await fetchGraphQL(PODCASTSQUERY);
+  if (!authToken) {
+    // If no authToken exists, redirect to the login page
     redirect("/admin");
   }
 
-  const data = await fetchGraphQL(PODCASTSQUERY);
+  /*  try {
+    const decoded = jwt.verify(
+      authToken,
+      process.env.JWT_SECRET || "my-secret-key"
+    );
+    return (
+      <div>
+        Welcome to the Dashboard, {decoded.role} <LogOutButton />
+      </div>
+    );
+  } catch (error) {
+    // If the token is invalid or expired, redirect to login page
+    redirect("/admin");
+  }
+ */
   console.log(data);
   if (!data || !data.podcasts) {
     return <div>No friends found</div>;
@@ -24,6 +42,7 @@ export default async function Dashboard() {
             {podcast.title}
           </div>
         ))}
+        <LogOutButton />
       </main>
     </div>
   );
