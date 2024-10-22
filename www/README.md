@@ -69,3 +69,5 @@ Since we didn't want a login system for general users, the best way to manage ac
 - **Authentication Check**: Other parts of the app, such as the dashboard, check for the `authToken` cookie using `cookies()` in server-side components. The token is verified using `jsonwebtoken`. If the token is not present, the user is redirected to the login page.
 
 ## Chapter 5:
+
+Pending....
