@@ -115,7 +115,8 @@
     "app/(pages)/layout.tsx",
     "app/components/Friend.tsx",
     "app/(pages)/page.tsx",
-    "app/utils/urlq/client/urlqProvider.tsx"
+    "app/utils/urlq/client/urlqProvider.tsx",
+    "app/components/loginForm.js"
   ],
   "exclude": ["node_modules"]
 }

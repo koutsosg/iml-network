@@ -1,15 +1,17 @@
+import { cookies } from "next/headers";
 import { fetchGraphQL } from "../../../utils/urlq/fetchGraphQL";
 import { PODCASTSQUERY } from "../../../utils/urlq/queries";
 import { redirect } from "next/navigation";
-
+import LogOutButton from "../../../components/logout";
 export default async function Dashboard() {
-  const isAdminLoggedIn = true;
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("authToken")?.value;
+  const data = await fetchGraphQL(PODCASTSQUERY);
 
-  if (!isAdminLoggedIn) {
+  if (!authToken) {
     redirect("/admin");
   }
 
-  const data = await fetchGraphQL(PODCASTSQUERY);
   console.log(data);
   if (!data || !data.podcasts) {
     return <div>No friends found</div>;
@@ -24,6 +26,7 @@ export default async function Dashboard() {
             {podcast.title}
           </div>
         ))}
+        <LogOutButton />
       </main>
     </div>
   );

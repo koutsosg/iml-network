@@ -16,3 +16,26 @@ array_relationships:
         table:
           name: podcast_persons
           schema: public
+select_permissions:
+  - role: public
+    permission:
+      columns:
+        - categories
+        - keywords
+        - author
+        - copyright
+        - funding_url
+        - image_link
+        - image_title
+        - image_url
+        - language
+        - owner_email
+        - owner_name
+        - title
+        - transistor_url
+        - description
+        - slug
+        - pub_date
+        - id
+      filter: {}
+    comment: ""
