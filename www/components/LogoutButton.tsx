@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-const LogOutButton = () => {
+const LogoutButton = () => {
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -24,4 +24,4 @@ const LogOutButton = () => {
 
   return <button onClick={handleLogout}>Log Out</button>;
 };
-export default LogOutButton;
+export default LogoutButton;

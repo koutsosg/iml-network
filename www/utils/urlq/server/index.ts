@@ -1,6 +1,7 @@
 import { createClient, cacheExchange, fetchExchange } from "@urql/core";
+import { registerUrql } from "@urql/next/rsc";
 
-export const makeClient = () => {
+const makeClient = () => {
   return createClient({
     url: process.env.NEXT_PUBLIC_HASURA_PROJECT_ENDPOINT as string,
     fetchOptions: {
@@ -11,3 +12,4 @@ export const makeClient = () => {
     exchanges: [cacheExchange, fetchExchange],
   });
 };
+export const { getClient: getRscClient } = registerUrql(makeClient);

@@ -1,10 +1,8 @@
-import { makeClient } from "./server/client";
-import { registerUrql } from "@urql/next/rsc";
+import { getRscClient } from "./server";
 
 export async function fetchGraphQL(query: string, variables = {}) {
-  const { getClient } = registerUrql(makeClient);
   try {
-    const result = await getClient().query(query, variables).toPromise();
+    const result = await getRscClient().query(query, variables).toPromise();
     console.log("Raw GraphQL Result:", result);
     if (result.error) {
       console.error("GraphQL Error:", result.error.graphQLErrors);
