@@ -2,13 +2,18 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Input } from "@components/core-ui/Input";
+import Button from "./core-ui/Button/Button";
+import Spinner from "./core-ui/Spinner/Spinner";
 
 export default function LogInForm() {
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const username = e.target.username.value;
     const password = e.target.password.value;
     // Make POST request to the /api/login endpoint
@@ -29,20 +34,24 @@ export default function LogInForm() {
       // Display error message
       setError(data.message || "Login failed");
     }
+    setIsLoading(false);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username:</label>
-        <input type="text" name="username" required />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" name="password" required />
-      </div>
+      <Input type="text" name="username" label="USERNAME" required />
+      <Input type="password" name="password" label="PASSWORD" required />
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit">Login</button>
+
+      <Button
+        extraClasses="w-full"
+        variant="primary"
+        size="medium"
+        isLoading={isLoading}
+        spinner={true}
+      >
+        login
+      </Button>
     </form>
   );
 }

@@ -16,7 +16,7 @@ export default async function Dashboard() {
       <div>
         my podcasts
         {data.podcasts.map(
-          (podcast: { id: number; title: string; slug: string }) => (
+          (podcast: { id: string; title: string; slug: string }) => (
             <Link key={podcast.id} href={`/dashboard/podcast/${podcast.slug}`}>
               <div className="capitalize " key={podcast.id}>
                 {podcast.title}

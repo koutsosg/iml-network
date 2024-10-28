@@ -8,7 +8,7 @@ export default async function LogIn() {
     redirect("/dashboard");
   }
   return (
-    <div className="login-container">
+    <div className="">
       <h1>Login</h1>
       <LogInForm />
     </div>

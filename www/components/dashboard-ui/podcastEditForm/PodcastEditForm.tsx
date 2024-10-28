@@ -41,7 +41,7 @@ const PodcastEditForm: React.FC<PodcastEditFormProps> = ({ podcast }) => {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <Input
         type="text"
-        name="TITLE"
+        name="title"
         label="Title"
         defaultValue={podcast.title}
         inputRef={titleRef}

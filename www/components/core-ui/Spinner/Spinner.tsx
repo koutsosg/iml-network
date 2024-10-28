@@ -1,6 +1,6 @@
 import React from "react";
-import { SpinnerProps } from "@components/core-ui/Spinner//Spinner.types";
-import { sizeStyles } from "@components/core-ui/Spinner//Spinner.styles";
+import { SpinnerProps } from "@components/core-ui/Spinner/Spinner.types";
+import { sizeStyles } from "@components/core-ui/Spinner/Spinner.styles";
 import classNames from "classnames";
 
 const Spinner: React.FC<SpinnerProps> = ({
