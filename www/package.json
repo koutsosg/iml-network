@@ -12,12 +12,14 @@
   "dependencies": {
     "@urql/core": "^5.0.6",
     "@urql/next": "^1.1.2",
+    "classnames": "^2.5.1",
     "dotenv": "^16.4.5",
     "graphql": "^16.9.0",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
+    "sass": "^1.80.4",
     "urql": "^4.1.0"
   },
   "devDependencies": {

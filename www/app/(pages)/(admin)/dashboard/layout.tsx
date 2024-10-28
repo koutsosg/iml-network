@@ -1,6 +1,8 @@
 import React from "react";
 import { ClientProvider } from "@utils/urlq";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import LogoutButton from "@components/LogoutButton";
 
 export default function DashboardLayout({
   children,
@@ -10,5 +12,16 @@ export default function DashboardLayout({
   const cookieStore = cookies();
   const authToken = cookieStore.get("authToken")?.value;
 
-  return <ClientProvider token={authToken}>{children}</ClientProvider>;
+  if (!authToken) {
+    redirect("/admin");
+  }
+
+  return (
+    <ClientProvider token={authToken}>
+      <div>
+        Dashboard <LogoutButton />
+      </div>
+      {children}
+    </ClientProvider>
+  );
 }

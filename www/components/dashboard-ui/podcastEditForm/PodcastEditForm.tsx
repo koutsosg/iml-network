@@ -1,5 +1,5 @@
 "use client";
-import { InputField } from "@components/core-ui/Input";
+import Input from "@components/core-ui/Input/Input";
 import { updatePodcast } from "@utils/urlq/updatePodcast.mutate";
 import React, { useRef } from "react";
 import { useMutation } from "urql";
@@ -39,7 +39,9 @@ const PodcastEditForm: React.FC<PodcastEditFormProps> = ({ podcast }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <InputField
+      <Input
+        type="text"
+        name="TITLE"
         label="Title"
         defaultValue={podcast.title}
         inputRef={titleRef}
