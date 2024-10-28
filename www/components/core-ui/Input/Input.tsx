@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "@components/core-ui/Input/Input.module.scss";
 import classNames from "classnames";
 import Button from "../Button/Button";
+import { InputProps } from "./Input.types";
 
 const Input: React.FC<InputProps> = ({
   type = "text",

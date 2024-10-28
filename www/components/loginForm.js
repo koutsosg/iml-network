@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@components/core-ui/Input";
 import Button from "./core-ui/Button/Button";
-import Spinner from "./core-ui/Spinner/Spinner";
 
 export default function LogInForm() {
   const [error, setError] = useState(null);
