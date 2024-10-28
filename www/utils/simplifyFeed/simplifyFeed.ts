@@ -11,7 +11,7 @@ export const simplifyPodcastData = (data: any) => {
       description: podcast?.description,
       copyright: podcast?.copyright,
       funding_url: podcast["podcast:funding"]?.url,
-      persons: podcast["podcast:person"]?.map((person) => ({
+      persons: podcast["podcast:person"]?.map((person: any) => ({
         name: person?._,
         role: person?.role,
         href: person?.href,
@@ -23,12 +23,14 @@ export const simplifyPodcastData = (data: any) => {
       image_url: podcast?.image?.url,
       image_title: podcast?.image?.title,
       image_link: podcast?.image?.link,
-      categories: podcast["itunes:category"]?.map((category) => category?.text),
+      categories: podcast["itunes:category"]?.map(
+        (category: any) => category?.text
+      ),
       author: podcast["itunes:author"],
       keywords: podcast["itunes:keywords"]?.split(", "),
       owner_name: podcast["itunes:owner"]["itunes:name"],
       owner_email: podcast["itunes:owner"]["itunes:email"],
-      episodes: podcast?.item?.map((episode) => ({
+      episodes: podcast?.item?.map((episode: any) => ({
         id: episode?.guid["_"],
         title: episode?.title,
         season: episode["podcast:season"],
@@ -42,7 +44,7 @@ export const simplifyPodcastData = (data: any) => {
         media_type: episode?.enclosure?.type,
         image_link: episode["itunes:image"]?.href,
         keywords: episode["itunes:keywords"]?.split(", "),
-        persons: episode["podcast:person"]?.map((person) => ({
+        persons: episode["podcast:person"]?.map((person: any) => ({
           name: person["_"],
           role: person?.role,
           href: person?.href,
