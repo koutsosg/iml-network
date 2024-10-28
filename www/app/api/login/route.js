@@ -15,9 +15,15 @@ export async function POST(req) {
   if (username === validUsername && password === validPassword) {
     // Create JWT token
     const token = jwt.sign(
-      { role: "admin" },
+      {
+        role: "admin",
+        "https://hasura.io/jwt/claims": {
+          "x-hasura-allowed-roles": ["admin"],
+          "x-hasura-default-role": "admin",
+        },
+      },
       process.env.JWT_SECRET || "my-secret-key",
-      { expiresIn: "1h" } // Expires in 1 hour
+      { expiresIn: "1h", algorithm: "HS256" } // Expires in 1 hour
     );
 
     // Set the JWT token as a cookie

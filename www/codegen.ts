@@ -9,9 +9,9 @@ const config: CodegenConfig = {
       },
     },
   },
-  documents: "**/*.graphql",
+  documents: ["utils/**/*.query.ts", "utils/**/*.mutate.ts"],
   generates: {
-    "./app/generated/": {
+    "utils/generated/": {
       preset: "client",
       plugins: [],
     },

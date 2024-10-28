@@ -7,13 +7,21 @@ import {
   ssrExchange,
 } from "@urql/next";
 import { useMemo } from "react";
-
-export function ClientProvider({ children }: React.PropsWithChildren) {
+type Props = {
+  children: React.ReactNode;
+  token: string | undefined;
+};
+export function ClientProvider({ children, token }: Props) {
   const [client, ssr] = useMemo(() => {
-    const ssr = ssrExchange({ isClient: typeof window !== "undefined" });
+    const ssr = ssrExchange();
     const client = createClient({
       url: process.env.NEXT_PUBLIC_HASURA_PROJECT_ENDPOINT as string,
       exchanges: [cacheExchange, ssr, fetchExchange],
+      fetchOptions: {
+        headers: {
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+      },
       suspense: true,
     });
 
