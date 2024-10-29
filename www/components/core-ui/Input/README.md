@@ -134,4 +134,3 @@ The password toggle button is rendered using the reusable `Button` component. Yo
 ### Dependencies
 
 - [Tailwind CSS](https://tailwindcss.com/) for utility-based styling.
-- [CSS Modules](https://github.com/css-modules/css-modules) for scoped component-level styling.

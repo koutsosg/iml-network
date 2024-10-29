@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Input } from "@components/core-ui/Input";
-import Button from "./core-ui/Button/Button";
+
+import Button from "@components/core-ui/Button/Button";
+import { InputField } from "@components/core-ui/Input";
 
 export default function LogInForm() {
   const [error, setError] = useState(null);
@@ -38,8 +39,8 @@ export default function LogInForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Input type="text" name="username" label="USERNAME" required />
-      <Input type="password" name="password" label="PASSWORD" required />
+      <InputField type="text" name="username" label="USERNAME" required />
+      <InputField type="password" name="password" label="PASSWORD" required />
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <Button

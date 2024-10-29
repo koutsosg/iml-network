@@ -1,5 +1,6 @@
 "use client";
-import Input from "@components/core-ui/Input/Input";
+import { InputField } from "@components/core-ui/Input";
+import TextAreaField from "@components/core-ui/TextAreaField/TextAreaField";
 import { updatePodcast } from "@utils/urlq/updatePodcast.mutate";
 import React, { useRef } from "react";
 import { useMutation } from "urql";
@@ -10,6 +11,7 @@ interface PodcastEditFormProps {
 
 const PodcastEditForm: React.FC<PodcastEditFormProps> = ({ podcast }) => {
   const titleRef = useRef<HTMLInputElement>(null);
+  const descRef = useRef<HTMLTextAreaElement>(null);
   //const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const [updateResult, executeUpdate] = useMutation(updatePodcast);
 
@@ -17,12 +19,14 @@ const PodcastEditForm: React.FC<PodcastEditFormProps> = ({ podcast }) => {
     event.preventDefault();
 
     const title = titleRef.current?.value || podcast.title;
+    const description = descRef.current?.value || podcast.description;
     console.log("updateresult", updateResult);
     //const description = descriptionRef.current?.value || podcast.description;
     try {
       const response = await executeUpdate({
         id: podcast.id,
         title,
+        description,
       });
 
       if (response?.data?.update_podcasts_by_pk) {
@@ -39,12 +43,20 @@ const PodcastEditForm: React.FC<PodcastEditFormProps> = ({ podcast }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <Input
+      <InputField
         type="text"
         name="title"
-        label="Title"
+        label="TITLE"
         defaultValue={podcast.title}
         inputRef={titleRef}
+        required
+      />
+      <TextAreaField
+        name="description"
+        defaultValue={podcast.description}
+        textAreaRef={descRef}
+        label="DESCRIPTION"
+        rows={10}
         required
       />
       <button type="submit" className="bg-blue-500 text-white rounded p-2">

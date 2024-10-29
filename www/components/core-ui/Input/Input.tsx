@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Button from "../Button/Button";
 import { InputProps } from "./Input.types";
 
-const Input: React.FC<InputProps> = ({
+const InputField: React.FC<InputProps> = ({
   type = "text",
   name,
   value,
@@ -67,4 +67,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input;
+export default InputField;

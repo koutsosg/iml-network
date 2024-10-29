@@ -15,7 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query editPodcast($slug: String!) {\n    podcasts(where: { slug: { _eq: $slug } }) {\n      title\n      author\n      categories\n      copyright\n      description\n      owner_name\n      owner_email\n      language\n      keywords\n      image_url\n      image_title\n      image_link\n      id\n      funding_url\n    }\n  }\n": types.EditPodcastDocument,
-    "\n  mutation updatePodcast($id: uuid!, $title: String!) {\n    update_podcasts_by_pk(pk_columns: { id: $id }, _set: { title: $title }) {\n      id\n      title\n    }\n  }\n": types.UpdatePodcastDocument,
+    "\n  mutation updatePodcast($id: uuid!, $title: String!, $description: String!) {\n    update_podcasts_by_pk(\n      pk_columns: { id: $id }\n      _set: { title: $title, description: $description }\n    ) {\n      id\n      title\n      description\n    }\n  }\n": types.UpdatePodcastDocument,
 };
 
 /**
@@ -39,7 +39,7 @@ export function graphql(source: "\n  query editPodcast($slug: String!) {\n    po
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  mutation updatePodcast($id: uuid!, $title: String!) {\n    update_podcasts_by_pk(pk_columns: { id: $id }, _set: { title: $title }) {\n      id\n      title\n    }\n  }\n"): (typeof documents)["\n  mutation updatePodcast($id: uuid!, $title: String!) {\n    update_podcasts_by_pk(pk_columns: { id: $id }, _set: { title: $title }) {\n      id\n      title\n    }\n  }\n"];
+export function graphql(source: "\n  mutation updatePodcast($id: uuid!, $title: String!, $description: String!) {\n    update_podcasts_by_pk(\n      pk_columns: { id: $id }\n      _set: { title: $title, description: $description }\n    ) {\n      id\n      title\n      description\n    }\n  }\n"): (typeof documents)["\n  mutation updatePodcast($id: uuid!, $title: String!, $description: String!) {\n    update_podcasts_by_pk(\n      pk_columns: { id: $id }\n      _set: { title: $title, description: $description }\n    ) {\n      id\n      title\n      description\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

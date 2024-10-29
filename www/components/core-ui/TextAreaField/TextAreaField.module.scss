@@ -1,0 +1,6 @@
+.sr_textarea {
+  &:not(:placeholder-shown) ~ label,
+  &:focus ~ label {
+    top: 20px;
+  }
+}
