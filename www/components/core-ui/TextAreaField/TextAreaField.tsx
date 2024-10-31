@@ -6,13 +6,9 @@ import { TextAreaProps } from "./TextAreaField.types";
 
 const TextAreaField: React.FC<TextAreaProps> = ({
   name,
-  value,
   label,
-  required = false,
-  placeholder = "",
   wrapperClassName = "",
   textAreaClassName = "px-6 py-7 w-full",
-  defaultValue,
   textAreaRef,
   rows = 4,
   cols,
@@ -28,10 +24,7 @@ const TextAreaField: React.FC<TextAreaProps> = ({
     <div className={`relative ${wrapperClassName}`}>
       <textarea
         name={name}
-        value={value}
-        placeholder={placeholder}
-        required={required}
-        defaultValue={defaultValue}
+        id={name}
         ref={textAreaRef}
         rows={rows}
         cols={cols}

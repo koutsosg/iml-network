@@ -8,13 +8,9 @@ import { InputProps } from "./Input.types";
 const InputField: React.FC<InputProps> = ({
   type = "text",
   name,
-  value,
   label,
-  required = false,
-  placeholder = "",
   wrapperClassName = "",
   inputClassName = "px-6 py-4 w-full",
-  defaultValue,
   inputRef,
   ...props
 }) => {
@@ -36,10 +32,6 @@ const InputField: React.FC<InputProps> = ({
         type={inputType}
         name={name}
         id={name}
-        value={value}
-        placeholder={placeholder}
-        required={required}
-        defaultValue={defaultValue}
         ref={inputRef}
         className={inputClasses}
         {...props}

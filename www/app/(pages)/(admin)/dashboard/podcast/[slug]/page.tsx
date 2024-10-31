@@ -15,6 +15,7 @@ const Podcast = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div>
+      <div>{podcast.title}</div>
       <PodcastEditForm podcast={podcast} />
     </div>
   );
