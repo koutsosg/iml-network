@@ -93,9 +93,9 @@ Now it's time to decide how the admin dashboard will function. First, we need to
 
 Once the admin logs in, they will be able to edit the network page data (this part will be kept for later). Below that, we will add a section for selecting a podcast.
 
-Under the **My Podcasts** header, the data returned from our database will display as "Podcast1 name" for the first RSS feed link, and "Podcast2 name" for the second. (For now, we will manually add test data to Hasura.) These will be clickable buttons that redirect to a link such as `/dashboard/podcast/`id`, where the admin can edit the podcast’s details.
+Under the **My Podcasts** header, the data returned from our database will display as "Podcast1 name" for the first RSS feed link, and "Podcast2 name" for the second. (For now, we will manually add test data to Hasura.) These will be clickable buttons that redirect to a link such as `/dashboard/podcast/`slug`, where the admin can edit the podcast’s details.
 
-Below the podcast data, the admin will also be able to select individual episodes. Each selected episode will redirect to a link like `/dashboard/podcast/`id`/episode/`id`, allowing further editing of the episode's details.
+Below the podcast data, the admin will also be able to select individual episodes. Each selected episode will redirect to a link like `/dashboard/podcast/`slug`/episode/`id`, allowing further editing of the episode's details.
 
 To achieve this structure, we will use **Dynamic Routes** from Next.js.
 
