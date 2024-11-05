@@ -16,11 +16,10 @@ const InputField: React.FC<InputProps> = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const inputType = type === "password" && showPassword ? "text" : type;
-
   const inputClasses = classNames(
-    " peer rounded-[8px] border bg-white leading-none focus:outline-none",
+    " peer rounded-lg border bg-white leading-none focus:outline-none",
     styles.sr_input,
-    inputClassName
+    inputClassName,
   );
 
   const handleClick = () => {
@@ -50,7 +49,7 @@ const InputField: React.FC<InputProps> = ({
       {label && (
         <label
           htmlFor={name}
-          className="pointer-events-none absolute inset-x-6 top-1/2 -translate-y-1/2 text-[10px] leading-none transition-all peer-focus:top-1/4"
+          className="pointer-events-none absolute inset-x-6 top-1/2 -translate-y-1/2 text-[10px] uppercase leading-none transition-all peer-focus:top-1/4"
         >
           {label}
         </label>

@@ -2,43 +2,43 @@
 import Button from "@components/core-ui/Button/Button";
 import { InputField } from "@components/core-ui/Input";
 import TextAreaField from "@components/core-ui/TextAreaField/TextAreaField";
-import { updatePodcast } from "@utils/urlq/updatePodcast.mutate";
+import { updateEpisode } from "@utils/urlq/updateEpisode.mutate";
 import Image from "next/image";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useMutation } from "urql";
 
-interface PodcastEditFormProps {
-  podcast: {
+interface EpisodeEditFormProps {
+  episode: {
     id: string;
-    title: string;
-    description: string;
     author: string;
-    categories: string[];
-    copyright: string;
-    funding_url: string;
+    description: string;
+    episode_type: string;
+    image_href: string;
     image_title: string;
-    image_url: string;
     keywords: string[];
-    owner_email: string;
-    owner_name: string;
+    link: string;
+    media_length: string;
+    media_type: string;
+    media_url: string;
+    pub_dates: string;
+    season: string;
+    title: string;
+    chapters_type: string;
+    chapters_url: string;
+    podcast_id: string;
   };
 }
 
-const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
+const EpisodeEditForm = ({ episode }: EpisodeEditFormProps) => {
   const [formData, setFormData] = useState({
-    description: podcast.description,
-    author: podcast.author,
-    categories: podcast.categories.join(", "),
-    copyright: podcast.copyright,
-    funding_url: podcast.funding_url,
-    image_title: podcast.image_title,
-    image_url: podcast.image_url,
-    keywords: podcast.keywords.join(", "),
-    owner_email: podcast.owner_email,
-    owner_name: podcast.owner_name,
+    description: episode.description,
+    episode_type: episode.episode_type,
+    image_href: episode.image_href,
+    image_title: episode.image_title,
+    keywords: episode.keywords.join(", "),
+    title: episode.title,
   });
-
-  const [updateResult, executeUpdate] = useMutation(updatePodcast);
+  const [updateResult, executeUpdate] = useMutation(updateEpisode);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -51,17 +51,16 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
   };
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    if (!window.confirm("Are you sure you want to update this podcast?"))
+
+    if (!window.confirm("Are you sure you want to update this episode?"))
       return;
     try {
       const response = await executeUpdate({
-        id: podcast.id,
+        id: episode.id,
         ...formData,
-        categories: formData.categories.split(",").map((cat) => cat.trim()),
         keywords: formData.keywords.split(",").map((keyword) => keyword.trim()),
       });
-
-      if (response?.data?.update_podcasts_by_pk) {
+      if (response?.data?.update_episodes_by_pk) {
         alert("Podcast updated successfully!");
       } else {
         throw new Error("Failed to update the podcast");
@@ -75,29 +74,56 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 capitalize">
-      <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
+      <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
         <h1 className="line-clamp-2 content-center text-lg font-semibold sm:text-xl md:text-2xl">
-          {podcast.title}
+          {episode.title}
         </h1>
         <Button
           isLoading={updateResult.fetching}
           disabled={updateResult.fetching}
           spinner={true}
         >
-          Update Podcast
+          Update Episode
         </Button>
       </div>
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="flex w-auto flex-col gap-4">
           <div className="flex w-full justify-center">
             <Image
-              src={formData.image_url}
+              src={formData.image_href}
               width={340}
               height={340}
               alt="Podcast Image"
               className="rounded-lg object-contain md:h-auto"
             />
           </div>
+        </div>
+        <div className="flex flex-grow flex-col gap-4">
+          <InputField
+            type="text"
+            name="title"
+            label="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+
+          <InputField
+            type="text"
+            name="episode_type"
+            label="episode type"
+            value={formData.episode_type}
+            onChange={handleChange}
+            required
+          />
+          <InputField
+            type="text"
+            name="keywords"
+            label="keywords"
+            value={formData.keywords}
+            onChange={handleChange}
+            required
+          />
           <InputField
             type="text"
             name="image_title"
@@ -110,66 +136,7 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
             type="text"
             name="image_url"
             label="Image url"
-            value={formData.image_url}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="flex flex-grow flex-col gap-4">
-          <InputField
-            type="text"
-            name="author"
-            label="author"
-            value={formData.author}
-            onChange={handleChange}
-            required
-          />
-          <InputField
-            type="text"
-            name="categories"
-            label="categories"
-            value={formData.categories}
-            onChange={handleChange}
-            required
-          />
-          <InputField
-            type="text"
-            name="copyright"
-            label="copyright"
-            value={formData.copyright}
-            onChange={handleChange}
-            required
-          />
-          <InputField
-            type="text"
-            name="funding_url"
-            label="funding url"
-            value={formData.funding_url}
-            onChange={handleChange}
-            required
-          />
-
-          <InputField
-            type="text"
-            name="keywords"
-            label="keywords"
-            value={formData.keywords}
-            onChange={handleChange}
-            required
-          />
-          <InputField
-            type="text"
-            name="owner_email"
-            label="owner email"
-            value={formData.owner_email}
-            onChange={handleChange}
-            required
-          />
-          <InputField
-            type="text"
-            name="owner_name"
-            label="owner name"
-            value={formData.owner_name}
+            value={formData.image_href}
             onChange={handleChange}
             required
           />
@@ -186,5 +153,4 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
     </form>
   );
 };
-
-export default PodcastEditForm;
+export default EpisodeEditForm;

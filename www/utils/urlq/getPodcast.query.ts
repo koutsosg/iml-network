@@ -1,7 +1,7 @@
 import { graphql } from "@utils/generated";
 
 export const getPodcast = graphql(`
-  query editPodcast($slug: String!) {
+  query getPodcast($slug: String!) {
     podcasts(where: { slug: { _eq: $slug } }) {
       id
       title
@@ -16,6 +16,15 @@ export const getPodcast = graphql(`
       keywords
       owner_email
       owner_name
+      episodes(order_by: { pub_date: desc }) {
+        id
+        title
+        author
+        pub_date
+        season
+        image_href
+        episode_type
+      }
     }
   }
 `);

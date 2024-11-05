@@ -3,7 +3,7 @@ import { DocumentNode } from "graphql"; // Import the DocumentNode type
 
 export async function fetchGraphQL<T = any>(
   query: DocumentNode | string, // Allow both DocumentNode and string
-  variables = {}
+  variables = {},
 ): Promise<T> {
   try {
     const result = await getRscClient()
@@ -11,7 +11,6 @@ export async function fetchGraphQL<T = any>(
       .toPromise()
       .then((r) => r.data ?? {});
 
-    /*   console.log("Raw GraphQL Result:", result); */
     if (result.error) {
       console.error("GraphQL Error:", result.error.graphQLErrors);
       console.error("Network Error:", result.error.networkError);

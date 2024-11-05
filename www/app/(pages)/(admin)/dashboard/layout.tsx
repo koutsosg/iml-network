@@ -21,7 +21,9 @@ export default function DashboardLayout({
       <div>
         Dashboard <LogoutButton />
       </div>
-      {children}
+      <div className="flex flex-col gap-4 px-4 py-3 md:px-8 md:py-6">
+        {children}
+      </div>
     </ClientProvider>
   );
 }
