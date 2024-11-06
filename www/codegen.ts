@@ -9,9 +9,13 @@ const config: CodegenConfig = {
       },
     },
   },
-  documents: ["utils/**/*.query.ts", "utils/**/*.mutate.ts"],
+  documents: [
+    "components/**/*.query.ts",
+    "components/**/*.mutate.ts",
+    "queries/**/*.query.ts",
+  ],
   generates: {
-    "utils/generated/": {
+    "utils/codegen/": {
       preset: "client",
       plugins: [],
     },

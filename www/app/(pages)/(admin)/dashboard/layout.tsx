@@ -1,7 +1,7 @@
 import React from "react";
-import { ClientProvider } from "@utils/urlq";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { ClientProvider } from "@utils/urlq";
 import LogoutButton from "@components/LogoutButton";
 
 export default function DashboardLayout({

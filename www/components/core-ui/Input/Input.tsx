@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import styles from "@components/core-ui/Input/Input.module.scss";
 import classNames from "classnames";
-import Button from "../Button/Button";
+import { Button } from "@components/core-ui";
+import styles from "./Input.module.scss";
 import { InputProps } from "./Input.types";
 
-const InputField: React.FC<InputProps> = ({
+export const InputField = ({
   type = "text",
   name,
   label,
@@ -13,7 +13,7 @@ const InputField: React.FC<InputProps> = ({
   inputClassName = "px-6 py-4 w-full",
   inputRef,
   ...props
-}) => {
+}: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const inputType = type === "password" && showPassword ? "text" : type;
   const inputClasses = classNames(
@@ -57,5 +57,3 @@ const InputField: React.FC<InputProps> = ({
     </div>
   );
 };
-
-export default InputField;

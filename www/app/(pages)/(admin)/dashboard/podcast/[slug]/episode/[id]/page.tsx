@@ -1,6 +1,6 @@
-import EpisodeEditForm from "@components/dashboard-ui/episodeEditForm/episodeEditForm";
+import { EpisodeEditForm } from "@components/dashboard-ui/client";
 import { fetchGraphQL } from "@utils/urlq";
-import { getEpisode } from "@utils/urlq/getEpisode.query";
+import { getEpisode } from "@queries";
 
 const Episode = async ({ params }: { params: { id: string } }) => {
   const { id } = params;

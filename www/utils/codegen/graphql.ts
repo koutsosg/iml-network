@@ -578,8 +578,8 @@ export type Episodes_Bool_Exp = {
   episode_persons_aggregate?: InputMaybe<Episode_Persons_Aggregate_Bool_Exp>;
   episode_type?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  image_href?: InputMaybe<String_Comparison_Exp>;
   image_title?: InputMaybe<String_Comparison_Exp>;
+  image_url?: InputMaybe<String_Comparison_Exp>;
   keywords?: InputMaybe<String_Array_Comparison_Exp>;
   link?: InputMaybe<String_Comparison_Exp>;
   media_length?: InputMaybe<Bigint_Comparison_Exp>;
@@ -614,8 +614,8 @@ export type Episodes_Insert_Input = {
   episode_persons?: InputMaybe<Episode_Persons_Arr_Rel_Insert_Input>;
   episode_type?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  image_href?: InputMaybe<Scalars['String']['input']>;
   image_title?: InputMaybe<Scalars['String']['input']>;
+  image_url?: InputMaybe<Scalars['String']['input']>;
   keywords?: InputMaybe<Array<Scalars['String']['input']>>;
   link?: InputMaybe<Scalars['String']['input']>;
   media_length?: InputMaybe<Scalars['bigint']['input']>;
@@ -636,8 +636,8 @@ export type Episodes_Max_Order_By = {
   description?: InputMaybe<Order_By>;
   episode_type?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  image_href?: InputMaybe<Order_By>;
   image_title?: InputMaybe<Order_By>;
+  image_url?: InputMaybe<Order_By>;
   keywords?: InputMaybe<Order_By>;
   link?: InputMaybe<Order_By>;
   media_length?: InputMaybe<Order_By>;
@@ -657,8 +657,8 @@ export type Episodes_Min_Order_By = {
   description?: InputMaybe<Order_By>;
   episode_type?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  image_href?: InputMaybe<Order_By>;
   image_title?: InputMaybe<Order_By>;
+  image_url?: InputMaybe<Order_By>;
   keywords?: InputMaybe<Order_By>;
   link?: InputMaybe<Order_By>;
   media_length?: InputMaybe<Order_By>;
@@ -694,8 +694,8 @@ export type Episodes_Order_By = {
   episode_persons_aggregate?: InputMaybe<Episode_Persons_Aggregate_Order_By>;
   episode_type?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
-  image_href?: InputMaybe<Order_By>;
   image_title?: InputMaybe<Order_By>;
+  image_url?: InputMaybe<Order_By>;
   keywords?: InputMaybe<Order_By>;
   link?: InputMaybe<Order_By>;
   media_length?: InputMaybe<Order_By>;
@@ -728,9 +728,9 @@ export enum Episodes_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  ImageHref = 'image_href',
-  /** column name */
   ImageTitle = 'image_title',
+  /** column name */
+  ImageUrl = 'image_url',
   /** column name */
   Keywords = 'keywords',
   /** column name */
@@ -759,8 +759,8 @@ export type Episodes_Set_Input = {
   description?: InputMaybe<Scalars['String']['input']>;
   episode_type?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  image_href?: InputMaybe<Scalars['String']['input']>;
   image_title?: InputMaybe<Scalars['String']['input']>;
+  image_url?: InputMaybe<Scalars['String']['input']>;
   keywords?: InputMaybe<Array<Scalars['String']['input']>>;
   link?: InputMaybe<Scalars['String']['input']>;
   media_length?: InputMaybe<Scalars['bigint']['input']>;
@@ -806,8 +806,8 @@ export type Episodes_Stream_Cursor_Value_Input = {
   description?: InputMaybe<Scalars['String']['input']>;
   episode_type?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
-  image_href?: InputMaybe<Scalars['String']['input']>;
   image_title?: InputMaybe<Scalars['String']['input']>;
+  image_url?: InputMaybe<Scalars['String']['input']>;
   keywords?: InputMaybe<Array<Scalars['String']['input']>>;
   link?: InputMaybe<Scalars['String']['input']>;
   media_length?: InputMaybe<Scalars['bigint']['input']>;
@@ -840,9 +840,9 @@ export enum Episodes_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  ImageHref = 'image_href',
-  /** column name */
   ImageTitle = 'image_title',
+  /** column name */
+  ImageUrl = 'image_url',
   /** column name */
   Keywords = 'keywords',
   /** column name */
@@ -1502,27 +1502,27 @@ export type GetEpisodeQueryVariables = Exact<{
 }>;
 
 
-export type GetEpisodeQuery = { __typename?: 'query_root', episodes_by_pk?: { __typename?: 'episodes', id: any, author?: string | null, description?: string | null, episode_type?: string | null, image_href?: string | null, image_title?: string | null, keywords?: Array<string> | null, link?: string | null, media_length?: any | null, media_type?: string | null, media_url?: string | null, pub_date?: any | null, season?: number | null, title?: string | null, chapters_type?: string | null, chapters_url?: string | null, podcast_id?: any | null } | null };
-
-export type GetPodcastQueryVariables = Exact<{
-  slug: Scalars['String']['input'];
-}>;
-
-
-export type GetPodcastQuery = { __typename?: 'query_root', podcasts: Array<{ __typename?: 'podcasts', id: any, title?: string | null, description?: string | null, author?: string | null, categories?: Array<string> | null, copyright?: string | null, funding_url?: string | null, language?: string | null, image_title?: string | null, image_url?: string | null, keywords?: Array<string> | null, owner_email?: string | null, owner_name?: string | null, episodes: Array<{ __typename?: 'episodes', id: any, title?: string | null, author?: string | null, pub_date?: any | null, season?: number | null, image_href?: string | null, episode_type?: string | null }> }> };
+export type GetEpisodeQuery = { __typename?: 'query_root', episodes_by_pk?: { __typename?: 'episodes', id: any, author?: string | null, description?: string | null, episode_type?: string | null, image_url?: string | null, image_title?: string | null, keywords?: Array<string> | null, link?: string | null, media_length?: any | null, media_type?: string | null, media_url?: string | null, pub_date?: any | null, season?: number | null, title?: string | null, chapters_type?: string | null, chapters_url?: string | null, podcast_id?: any | null } | null };
 
 export type UpdateEpisodeMutationVariables = Exact<{
   id: Scalars['uuid']['input'];
   description: Scalars['String']['input'];
   title: Scalars['String']['input'];
   image_title: Scalars['String']['input'];
-  image_href: Scalars['String']['input'];
+  image_url: Scalars['String']['input'];
   keywords: Array<Scalars['String']['input']> | Scalars['String']['input'];
   episode_type: Scalars['String']['input'];
 }>;
 
 
-export type UpdateEpisodeMutation = { __typename?: 'mutation_root', update_episodes_by_pk?: { __typename?: 'episodes', id: any, description?: string | null, title?: string | null, image_title?: string | null, image_href?: string | null, keywords?: Array<string> | null, episode_type?: string | null } | null };
+export type UpdateEpisodeMutation = { __typename?: 'mutation_root', update_episodes_by_pk?: { __typename?: 'episodes', id: any, description?: string | null, title?: string | null, image_title?: string | null, image_url?: string | null, keywords?: Array<string> | null, episode_type?: string | null } | null };
+
+export type GetPodcastQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetPodcastQuery = { __typename?: 'query_root', podcasts: Array<{ __typename?: 'podcasts', id: any, title?: string | null, description?: string | null, author?: string | null, categories?: Array<string> | null, copyright?: string | null, funding_url?: string | null, language?: string | null, image_title?: string | null, image_url?: string | null, keywords?: Array<string> | null, owner_email?: string | null, owner_name?: string | null, episodes: Array<{ __typename?: 'episodes', id: any, title?: string | null, author?: string | null, pub_date?: any | null, season?: number | null, image_url?: string | null, episode_type?: string | null }> }> };
 
 export type UpdatePodcastMutationVariables = Exact<{
   id: Scalars['uuid']['input'];
@@ -1541,8 +1541,14 @@ export type UpdatePodcastMutationVariables = Exact<{
 
 export type UpdatePodcastMutation = { __typename?: 'mutation_root', update_podcasts_by_pk?: { __typename?: 'podcasts', id: any, description?: string | null, author?: string | null, categories?: Array<string> | null, copyright?: string | null, funding_url?: string | null, image_title?: string | null, image_url?: string | null, keywords?: Array<string> | null, owner_email?: string | null, owner_name?: string | null } | null };
 
+export type GetPodcastsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const GetEpisodeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEpisode"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"episodes_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"episode_type"}},{"kind":"Field","name":{"kind":"Name","value":"image_href"}},{"kind":"Field","name":{"kind":"Name","value":"image_title"}},{"kind":"Field","name":{"kind":"Name","value":"keywords"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"media_length"}},{"kind":"Field","name":{"kind":"Name","value":"media_type"}},{"kind":"Field","name":{"kind":"Name","value":"media_url"}},{"kind":"Field","name":{"kind":"Name","value":"pub_date"}},{"kind":"Field","name":{"kind":"Name","value":"season"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"chapters_type"}},{"kind":"Field","name":{"kind":"Name","value":"chapters_url"}},{"kind":"Field","name":{"kind":"Name","value":"podcast_id"}}]}}]}}]} as unknown as DocumentNode<GetEpisodeQuery, GetEpisodeQueryVariables>;
-export const GetPodcastDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPodcast"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"podcasts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"categories"}},{"kind":"Field","name":{"kind":"Name","value":"copyright"}},{"kind":"Field","name":{"kind":"Name","value":"funding_url"}},{"kind":"Field","name":{"kind":"Name","value":"language"}},{"kind":"Field","name":{"kind":"Name","value":"image_title"}},{"kind":"Field","name":{"kind":"Name","value":"image_url"}},{"kind":"Field","name":{"kind":"Name","value":"keywords"}},{"kind":"Field","name":{"kind":"Name","value":"owner_email"}},{"kind":"Field","name":{"kind":"Name","value":"owner_name"}},{"kind":"Field","name":{"kind":"Name","value":"episodes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"order_by"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"pub_date"},"value":{"kind":"EnumValue","value":"desc"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"pub_date"}},{"kind":"Field","name":{"kind":"Name","value":"season"}},{"kind":"Field","name":{"kind":"Name","value":"image_href"}},{"kind":"Field","name":{"kind":"Name","value":"episode_type"}}]}}]}}]}}]} as unknown as DocumentNode<GetPodcastQuery, GetPodcastQueryVariables>;
-export const UpdateEpisodeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateEpisode"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"description"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"image_title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"image_href"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"keywords"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"episode_type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_episodes_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"description"},"value":{"kind":"Variable","name":{"kind":"Name","value":"description"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"image_title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"image_title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"image_href"},"value":{"kind":"Variable","name":{"kind":"Name","value":"image_href"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"keywords"},"value":{"kind":"Variable","name":{"kind":"Name","value":"keywords"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"episode_type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"episode_type"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"image_title"}},{"kind":"Field","name":{"kind":"Name","value":"image_href"}},{"kind":"Field","name":{"kind":"Name","value":"keywords"}},{"kind":"Field","name":{"kind":"Name","value":"episode_type"}}]}}]}}]} as unknown as DocumentNode<UpdateEpisodeMutation, UpdateEpisodeMutationVariables>;
+
+export type GetPodcastsQuery = { __typename?: 'query_root', podcasts: Array<{ __typename?: 'podcasts', id: any, title?: string | null, slug?: string | null }> };
+
+
+export const GetEpisodeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEpisode"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"episodes_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"episode_type"}},{"kind":"Field","name":{"kind":"Name","value":"image_url"}},{"kind":"Field","name":{"kind":"Name","value":"image_title"}},{"kind":"Field","name":{"kind":"Name","value":"keywords"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"media_length"}},{"kind":"Field","name":{"kind":"Name","value":"media_type"}},{"kind":"Field","name":{"kind":"Name","value":"media_url"}},{"kind":"Field","name":{"kind":"Name","value":"pub_date"}},{"kind":"Field","name":{"kind":"Name","value":"season"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"chapters_type"}},{"kind":"Field","name":{"kind":"Name","value":"chapters_url"}},{"kind":"Field","name":{"kind":"Name","value":"podcast_id"}}]}}]}}]} as unknown as DocumentNode<GetEpisodeQuery, GetEpisodeQueryVariables>;
+export const UpdateEpisodeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updateEpisode"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"description"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"image_title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"image_url"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"keywords"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"episode_type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_episodes_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"description"},"value":{"kind":"Variable","name":{"kind":"Name","value":"description"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"image_title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"image_title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"image_url"},"value":{"kind":"Variable","name":{"kind":"Name","value":"image_url"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"keywords"},"value":{"kind":"Variable","name":{"kind":"Name","value":"keywords"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"episode_type"},"value":{"kind":"Variable","name":{"kind":"Name","value":"episode_type"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"image_title"}},{"kind":"Field","name":{"kind":"Name","value":"image_url"}},{"kind":"Field","name":{"kind":"Name","value":"keywords"}},{"kind":"Field","name":{"kind":"Name","value":"episode_type"}}]}}]}}]} as unknown as DocumentNode<UpdateEpisodeMutation, UpdateEpisodeMutationVariables>;
+export const GetPodcastDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPodcast"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"podcasts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"categories"}},{"kind":"Field","name":{"kind":"Name","value":"copyright"}},{"kind":"Field","name":{"kind":"Name","value":"funding_url"}},{"kind":"Field","name":{"kind":"Name","value":"language"}},{"kind":"Field","name":{"kind":"Name","value":"image_title"}},{"kind":"Field","name":{"kind":"Name","value":"image_url"}},{"kind":"Field","name":{"kind":"Name","value":"keywords"}},{"kind":"Field","name":{"kind":"Name","value":"owner_email"}},{"kind":"Field","name":{"kind":"Name","value":"owner_name"}},{"kind":"Field","name":{"kind":"Name","value":"episodes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"order_by"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"pub_date"},"value":{"kind":"EnumValue","value":"desc"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"pub_date"}},{"kind":"Field","name":{"kind":"Name","value":"season"}},{"kind":"Field","name":{"kind":"Name","value":"image_url"}},{"kind":"Field","name":{"kind":"Name","value":"episode_type"}}]}}]}}]}}]} as unknown as DocumentNode<GetPodcastQuery, GetPodcastQueryVariables>;
 export const UpdatePodcastDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"updatePodcast"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"description"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"author"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"categories"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"copyright"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"funding_url"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"image_title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"image_url"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"keywords"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"owner_email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"owner_name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_podcasts_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"description"},"value":{"kind":"Variable","name":{"kind":"Name","value":"description"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"author"},"value":{"kind":"Variable","name":{"kind":"Name","value":"author"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"categories"},"value":{"kind":"Variable","name":{"kind":"Name","value":"categories"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"copyright"},"value":{"kind":"Variable","name":{"kind":"Name","value":"copyright"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"funding_url"},"value":{"kind":"Variable","name":{"kind":"Name","value":"funding_url"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"image_title"},"value":{"kind":"Variable","name":{"kind":"Name","value":"image_title"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"image_url"},"value":{"kind":"Variable","name":{"kind":"Name","value":"image_url"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"keywords"},"value":{"kind":"Variable","name":{"kind":"Name","value":"keywords"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"owner_email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"owner_email"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"owner_name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"owner_name"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"categories"}},{"kind":"Field","name":{"kind":"Name","value":"copyright"}},{"kind":"Field","name":{"kind":"Name","value":"funding_url"}},{"kind":"Field","name":{"kind":"Name","value":"image_title"}},{"kind":"Field","name":{"kind":"Name","value":"image_url"}},{"kind":"Field","name":{"kind":"Name","value":"keywords"}},{"kind":"Field","name":{"kind":"Name","value":"owner_email"}},{"kind":"Field","name":{"kind":"Name","value":"owner_name"}}]}}]}}]} as unknown as DocumentNode<UpdatePodcastMutation, UpdatePodcastMutationVariables>;
+export const GetPodcastsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPodcasts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"podcasts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]} as unknown as DocumentNode<GetPodcastsQuery, GetPodcastsQueryVariables>;

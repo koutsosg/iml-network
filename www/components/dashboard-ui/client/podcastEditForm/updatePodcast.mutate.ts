@@ -1,4 +1,4 @@
-import { graphql } from "@utils/generated";
+import { graphql } from "@utils/codegen";
 
 export const updatePodcast = graphql(`
   mutation updatePodcast(

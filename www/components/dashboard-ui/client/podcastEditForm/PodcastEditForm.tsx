@@ -1,77 +1,12 @@
 "use client";
-import Button from "@components/core-ui/Button/Button";
-import { InputField } from "@components/core-ui/Input";
-import TextAreaField from "@components/core-ui/TextAreaField/TextAreaField";
-import { updatePodcast } from "@utils/urlq/updatePodcast.mutate";
 import Image from "next/image";
-import { ChangeEvent, FormEvent, useState } from "react";
-import { useMutation } from "urql";
+import { PodcastEditFormProps } from "./podcastEditForm.types";
+import { Button, InputField, TextAreaField } from "@components/core-ui";
+import { usePodcastForm } from "@hooks";
 
-interface PodcastEditFormProps {
-  podcast: {
-    id: string;
-    title: string;
-    description: string;
-    author: string;
-    categories: string[];
-    copyright: string;
-    funding_url: string;
-    image_title: string;
-    image_url: string;
-    keywords: string[];
-    owner_email: string;
-    owner_name: string;
-  };
-}
-
-const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
-  const [formData, setFormData] = useState({
-    description: podcast.description,
-    author: podcast.author,
-    categories: podcast.categories.join(", "),
-    copyright: podcast.copyright,
-    funding_url: podcast.funding_url,
-    image_title: podcast.image_title,
-    image_url: podcast.image_url,
-    keywords: podcast.keywords.join(", "),
-    owner_email: podcast.owner_email,
-    owner_name: podcast.owner_name,
-  });
-
-  const [updateResult, executeUpdate] = useMutation(updatePodcast);
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    if (!window.confirm("Are you sure you want to update this podcast?"))
-      return;
-    try {
-      const response = await executeUpdate({
-        id: podcast.id,
-        ...formData,
-        categories: formData.categories.split(",").map((cat) => cat.trim()),
-        keywords: formData.keywords.split(",").map((keyword) => keyword.trim()),
-      });
-
-      if (response?.data?.update_podcasts_by_pk) {
-        alert("Podcast updated successfully!");
-      } else {
-        throw new Error("Failed to update the podcast");
-      }
-    } catch (err) {
-      console.error("Update error:", err);
-
-      alert("Error updating podcast. Please try again.");
-    }
-  };
+export const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
+  const { formData, updateResult, handleChange, handleSubmit } =
+    usePodcastForm(podcast);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 capitalize">
@@ -96,12 +31,13 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
               height={340}
               alt="Podcast Image"
               className="rounded-lg object-contain md:h-auto"
+              priority
             />
           </div>
           <InputField
             type="text"
             name="image_title"
-            label="image title"
+            label="Image Title"
             value={formData.image_title}
             onChange={handleChange}
             required
@@ -109,7 +45,7 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
           <InputField
             type="text"
             name="image_url"
-            label="Image url"
+            label="Image URL"
             value={formData.image_url}
             onChange={handleChange}
             required
@@ -119,7 +55,7 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
           <InputField
             type="text"
             name="author"
-            label="author"
+            label="Author"
             value={formData.author}
             onChange={handleChange}
             required
@@ -127,7 +63,7 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
           <InputField
             type="text"
             name="categories"
-            label="categories"
+            label="Categories"
             value={formData.categories}
             onChange={handleChange}
             required
@@ -135,7 +71,7 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
           <InputField
             type="text"
             name="copyright"
-            label="copyright"
+            label="Copyright"
             value={formData.copyright}
             onChange={handleChange}
             required
@@ -143,16 +79,15 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
           <InputField
             type="text"
             name="funding_url"
-            label="funding url"
+            label="Funding URL"
             value={formData.funding_url}
             onChange={handleChange}
             required
           />
-
           <InputField
             type="text"
             name="keywords"
-            label="keywords"
+            label="Keywords"
             value={formData.keywords}
             onChange={handleChange}
             required
@@ -160,7 +95,7 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
           <InputField
             type="text"
             name="owner_email"
-            label="owner email"
+            label="Owner Email"
             value={formData.owner_email}
             onChange={handleChange}
             required
@@ -168,7 +103,7 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
           <InputField
             type="text"
             name="owner_name"
-            label="owner name"
+            label="Owner Name"
             value={formData.owner_name}
             onChange={handleChange}
             required
@@ -178,7 +113,7 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
       <TextAreaField
         name="description"
         value={formData.description}
-        label="description"
+        label="Description"
         rows={10}
         onChange={handleChange}
         required
@@ -186,5 +121,3 @@ const PodcastEditForm = ({ podcast }: PodcastEditFormProps) => {
     </form>
   );
 };
-
-export default PodcastEditForm;

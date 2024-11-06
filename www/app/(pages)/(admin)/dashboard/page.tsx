@@ -1,10 +1,10 @@
-import { PODCASTSQUERY } from "@utils/urlq/queries";
-import { fetchGraphQL } from "@utils/urlq";
-import LogoutButton from "@components/LogoutButton";
 import Link from "next/link";
+import LogoutButton from "@components/LogoutButton";
+import { getPodcasts } from "@queries";
+import { fetchGraphQL } from "@utils/urlq";
 
 export default async function Dashboard() {
-  const data = await fetchGraphQL(PODCASTSQUERY);
+  const data = await fetchGraphQL(getPodcasts);
 
   if (!data || !data.podcasts) {
     return <div>No podcasts found</div>;

@@ -1,12 +1,9 @@
-import {
-  buttonStyles,
-  sizeStyles,
-} from "@components/core-ui/Button/Button.styles";
-import { ButtonProps } from "@components/core-ui/Button/Button.types";
-import Spinner from "@components/core-ui/Spinner/Spinner";
 import classNames from "classnames";
+import { ButtonProps } from "./Button.types";
+import { Spinner } from "@components/core-ui";
+import { buttonStyles, sizeStyles } from "./Button.styles";
 
-const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   variant = "primary",
   size = "medium",
   isLoading = false,
@@ -17,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   spinnerClasses = "",
   children,
   ...props
-}) => {
+}: ButtonProps) => {
   const variantClass = buttonStyles[variant];
 
   const sizeClass = sizeStyles[size];
@@ -26,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
     "capitalize inline-flex text-nowrap items-center justify-center font-medium rounded-md transition duration-150 ease-in-out ",
     variantClass,
     sizeClass,
-    extraClasses
+    extraClasses,
   );
 
   const renderContent = () =>
@@ -59,4 +56,3 @@ const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
-export default Button;

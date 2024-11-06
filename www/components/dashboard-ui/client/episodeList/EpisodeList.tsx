@@ -1,24 +1,10 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { PodcastEpisodeListProps } from "./episodeList.types";
 
-interface Episode {
-  id: string;
-  author: string;
-  description: string;
-  title: string;
-  image_href: string;
-  episode_type: string;
-  season: string;
-}
-
-interface PodcastEpisodeListProps {
-  episodes: Episode[];
-}
-
-const PodcastEpisodeList = ({ episodes }: PodcastEpisodeListProps) => {
+export const PodcastEpisodeList = ({ episodes }: PodcastEpisodeListProps) => {
   const pathname = usePathname();
 
   return (
@@ -33,7 +19,7 @@ const PodcastEpisodeList = ({ episodes }: PodcastEpisodeListProps) => {
               className="flex gap-3 rounded-lg border px-6 py-3"
             >
               <Image
-                src={episode.image_href}
+                src={episode.image_url}
                 width={80}
                 height={80}
                 alt="test"
@@ -53,4 +39,3 @@ const PodcastEpisodeList = ({ episodes }: PodcastEpisodeListProps) => {
     </>
   );
 };
-export default PodcastEpisodeList;

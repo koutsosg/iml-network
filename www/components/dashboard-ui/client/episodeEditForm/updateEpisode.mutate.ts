@@ -1,4 +1,4 @@
-import { graphql } from "@utils/generated";
+import { graphql } from "@utils/codegen";
 
 export const updateEpisode = graphql(`
   mutation updateEpisode(
@@ -6,7 +6,7 @@ export const updateEpisode = graphql(`
     $description: String!
     $title: String!
     $image_title: String!
-    $image_href: String!
+    $image_url: String!
     $keywords: [String!]!
     $episode_type: String!
   ) {
@@ -16,7 +16,7 @@ export const updateEpisode = graphql(`
         description: $description
         title: $title
         image_title: $image_title
-        image_href: $image_href
+        image_url: $image_url
         keywords: $keywords
         episode_type: $episode_type
       }
@@ -25,7 +25,7 @@ export const updateEpisode = graphql(`
       description
       title
       image_title
-      image_href
+      image_url
       keywords
       episode_type
     }

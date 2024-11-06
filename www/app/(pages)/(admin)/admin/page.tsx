@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
-import LogInForm from "../../../../components/loginForm";
 import { cookies } from "next/headers";
+import LogInForm from "@components/loginForm";
+
 export default async function LogIn() {
   const cookieStore = cookies();
   const authToken = cookieStore.get("authToken")?.value;

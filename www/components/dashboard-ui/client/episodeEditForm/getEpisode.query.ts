@@ -1,4 +1,4 @@
-import { graphql } from "@utils/generated";
+import { graphql } from "@utils/codegen";
 
 export const getEpisode = graphql(`
   query getEpisode($id: uuid!) {
@@ -7,7 +7,7 @@ export const getEpisode = graphql(`
       author
       description
       episode_type
-      image_href
+      image_url
       image_title
       keywords
       link

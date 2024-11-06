@@ -1,10 +1,8 @@
-"use client";
-import React from "react";
 import classNames from "classnames";
-import styles from "@components/core-ui/TextAreaField/TextAreaField.module.scss";
 import { TextAreaProps } from "./TextAreaField.types";
+import styles from "./TextAreaField.module.scss";
 
-const TextAreaField: React.FC<TextAreaProps> = ({
+export const TextAreaField = ({
   name,
   label,
   wrapperClassName = "",
@@ -13,7 +11,7 @@ const TextAreaField: React.FC<TextAreaProps> = ({
   rows = 4,
   cols,
   ...props
-}) => {
+}: TextAreaProps) => {
   const textAreaClasses = classNames(
     "peer rounded-lg border bg-white leading-none focus:outline-none",
     styles.sr_textarea,
@@ -42,5 +40,3 @@ const TextAreaField: React.FC<TextAreaProps> = ({
     </div>
   );
 };
-
-export default TextAreaField;

@@ -1,7 +1,9 @@
-import PodcastEpisodeList from "@components/dashboard-ui/episodeList/episodeList";
-import PodcastEditForm from "@components/dashboard-ui/podcastEditForm/PodcastEditForm";
 import { fetchGraphQL } from "@utils/urlq";
-import { getPodcast } from "@utils/urlq/getPodcast.query";
+import { getPodcast } from "@queries";
+import {
+  PodcastEditForm,
+  PodcastEpisodeList,
+} from "@components/dashboard-ui/client";
 
 const Podcast = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;

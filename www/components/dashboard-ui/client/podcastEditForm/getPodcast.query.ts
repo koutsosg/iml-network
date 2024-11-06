@@ -1,4 +1,4 @@
-import { graphql } from "@utils/generated";
+import { graphql } from "@utils/codegen";
 
 export const getPodcast = graphql(`
   query getPodcast($slug: String!) {
@@ -22,7 +22,7 @@ export const getPodcast = graphql(`
         author
         pub_date
         season
-        image_href
+        image_url
         episode_type
       }
     }

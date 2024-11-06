@@ -1,20 +1,20 @@
 import React from "react";
-import { SpinnerProps } from "@components/core-ui/Spinner/Spinner.types";
-import { sizeStyles } from "@components/core-ui/Spinner/Spinner.styles";
 import classNames from "classnames";
+import { SpinnerProps } from "./Spinner.types";
+import { sizeStyles } from "./Spinner.styles";
 
-const Spinner: React.FC<SpinnerProps> = ({
+export const Spinner = ({
   size = "medium",
   color = "white", // Default color
   extraClasses,
   ...props
-}) => {
+}: SpinnerProps) => {
   const sizeClass = sizeStyles[size];
 
   const spinnerClasses = classNames(
     "border-black/20 border-spinner rounded-full animate-spin",
     sizeClass,
-    extraClasses
+    extraClasses,
   );
 
   return (
@@ -25,5 +25,3 @@ const Spinner: React.FC<SpinnerProps> = ({
     ></div>
   );
 };
-
-export default Spinner;

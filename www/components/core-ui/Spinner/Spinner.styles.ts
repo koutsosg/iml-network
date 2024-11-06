@@ -1,4 +1,4 @@
-import { SpinnerSize } from "@components/core-ui/Spinner/Spinner.types";
+import { SpinnerSize } from "./Spinner.types";
 
 export const sizeStyles: Record<SpinnerSize, string> = {
   none: "",

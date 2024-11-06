@@ -1,21 +1,23 @@
 "use client";
-
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import Button from "@components/core-ui/Button/Button";
-import { InputField } from "@components/core-ui/Input";
+import { Button, InputField } from "./core-ui";
 
 export default function LogInForm() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    const username = e.target.username.value;
-    const password = e.target.password.value;
+
+    const form = e.target as HTMLFormElement; // Cast e.target to HTMLFormElement
+    const username = (form.elements.namedItem("username") as HTMLInputElement)
+      .value;
+    const password = (form.elements.namedItem("password") as HTMLInputElement)
+      .value;
+
     // Make POST request to the /api/login endpoint
     const res = await fetch("/api/login", {
       method: "POST",
