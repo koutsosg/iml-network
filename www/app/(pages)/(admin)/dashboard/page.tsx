@@ -4,9 +4,9 @@ import { fetchGraphQL } from "@utils/urlq";
 import { PodcastMenu } from "@components/dashboard-ui/podcastMenu/PodcastMenu";
 
 export default async function Dashboard() {
-  const imlndata = {
+  /*   const imlndata = {
     title: "test title",
-  };
+  }; */
   const data = await fetchGraphQL(getPodcasts);
 
   if (!data || !data.podcasts) {
