@@ -120,7 +120,6 @@
     "**/*.ts",
     "**/*.tsx",
     "app/(pages)/layout.tsx",
-    "components/Friend.tsx",
     "app/(pages)/page.tsx",
     "app/utils/urlq/client/urlqProvider.tsx",
     "components/loginForm.tsx"

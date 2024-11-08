@@ -40,10 +40,12 @@ export default function LogInForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <InputField type="text" name="username" label="USERNAME" required />
-      <InputField type="password" name="password" label="PASSWORD" required />
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <InputField type="text" name="username" label="USERNAME" required />
+        <InputField type="password" name="password" label="PASSWORD" required />
+        {error && <p style={{ color: "red" }}>{error}</p>}
+      </div>
 
       <Button
         extraClasses="w-full"

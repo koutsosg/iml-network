@@ -17,12 +17,12 @@ export const TextAreaField = ({
     styles.sr_textarea,
     textAreaClassName,
   );
-
   return (
     <div className={`relative ${wrapperClassName}`}>
       <textarea
         name={name}
         id={name}
+        placeholder=""
         ref={textAreaRef}
         rows={rows}
         cols={cols}

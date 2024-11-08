@@ -145,4 +145,4 @@ Initially, we encountered an issue where Hasura returned an invalid signature er
 
 Once configured correctly, JWT authentication allowed us to securely restrict access to Hasura, ensuring only authenticated requests from the admin dashboard were authorized to make changes to the database.
 
-## Chapter 8:
+## Chapter 8: Build the Dash

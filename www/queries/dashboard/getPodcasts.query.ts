@@ -6,6 +6,7 @@ export const getPodcasts = graphql(`
       id
       title
       slug
+      image_url
     }
   }
 `);

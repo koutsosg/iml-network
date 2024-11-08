@@ -1,9 +1,12 @@
-import Link from "next/link";
 import LogoutButton from "@components/LogoutButton";
 import { getPodcasts } from "@queries";
 import { fetchGraphQL } from "@utils/urlq";
+import { PodcastMenu } from "@components/dashboard-ui/podcastMenu/PodcastMenu";
 
 export default async function Dashboard() {
+  const imlndata = {
+    title: "test title",
+  };
   const data = await fetchGraphQL(getPodcasts);
 
   if (!data || !data.podcasts) {
@@ -11,20 +14,11 @@ export default async function Dashboard() {
   }
 
   return (
-    <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
+    <main className="flex flex-col items-center gap-8">
       <div>iml network data component here</div>
-      <div>
-        my podcasts
-        {data.podcasts.map(
-          (podcast: { id: string; title: string; slug: string }) => (
-            <Link key={podcast.id} href={`/dashboard/podcast/${podcast.slug}`}>
-              <div className="capitalize" key={podcast.id}>
-                {podcast.title}
-              </div>
-            </Link>
-          ),
-        )}
-      </div>
+
+      <PodcastMenu podcasts={data.podcasts} />
+
       <LogoutButton />
     </main>
   );

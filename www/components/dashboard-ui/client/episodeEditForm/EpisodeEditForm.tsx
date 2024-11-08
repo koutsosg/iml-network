@@ -69,7 +69,7 @@ export const EpisodeEditForm = ({ episode }: EpisodeEditFormProps) => {
           />
           <InputField
             type="text"
-            name="image_href"
+            name="image_url"
             label="Image URL"
             value={formData.image_url}
             onChange={handleChange}

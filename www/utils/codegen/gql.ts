@@ -18,7 +18,7 @@ const documents = {
     "\n  mutation updateEpisode(\n    $id: uuid!\n    $description: String!\n    $title: String!\n    $image_title: String!\n    $image_url: String!\n    $keywords: [String!]!\n    $episode_type: String!\n  ) {\n    update_episodes_by_pk(\n      pk_columns: { id: $id }\n      _set: {\n        description: $description\n        title: $title\n        image_title: $image_title\n        image_url: $image_url\n        keywords: $keywords\n        episode_type: $episode_type\n      }\n    ) {\n      id\n      description\n      title\n      image_title\n      image_url\n      keywords\n      episode_type\n    }\n  }\n": types.UpdateEpisodeDocument,
     "\n  query getPodcast($slug: String!) {\n    podcasts(where: { slug: { _eq: $slug } }) {\n      id\n      title\n      description\n      author\n      categories\n      copyright\n      funding_url\n      language\n      image_title\n      image_url\n      keywords\n      owner_email\n      owner_name\n      episodes(order_by: { pub_date: desc }) {\n        id\n        title\n        author\n        pub_date\n        season\n        image_url\n        episode_type\n      }\n    }\n  }\n": types.GetPodcastDocument,
     "\n  mutation updatePodcast(\n    $id: uuid!\n    $description: String!\n    $author: String!\n    $categories: [String!]!\n    $copyright: String!\n    $funding_url: String!\n    $image_title: String!\n    $image_url: String!\n    $keywords: [String!]!\n    $owner_email: String!\n    $owner_name: String!\n  ) {\n    update_podcasts_by_pk(\n      pk_columns: { id: $id }\n      _set: {\n        description: $description\n        author: $author\n        categories: $categories\n        copyright: $copyright\n        funding_url: $funding_url\n        image_title: $image_title\n        image_url: $image_url\n        keywords: $keywords\n        owner_email: $owner_email\n        owner_name: $owner_name\n      }\n    ) {\n      id\n      description\n      author\n      categories\n      copyright\n      funding_url\n      image_title\n      image_url\n      keywords\n      owner_email\n      owner_name\n    }\n  }\n": types.UpdatePodcastDocument,
-    "\n  query getPodcasts {\n    podcasts {\n      id\n      title\n      slug\n    }\n  }\n": types.GetPodcastsDocument,
+    "\n  query getPodcasts {\n    podcasts {\n      id\n      title\n      slug\n      image_url\n    }\n  }\n": types.GetPodcastsDocument,
 };
 
 /**
@@ -54,7 +54,7 @@ export function graphql(source: "\n  mutation updatePodcast(\n    $id: uuid!\n  
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query getPodcasts {\n    podcasts {\n      id\n      title\n      slug\n    }\n  }\n"): (typeof documents)["\n  query getPodcasts {\n    podcasts {\n      id\n      title\n      slug\n    }\n  }\n"];
+export function graphql(source: "\n  query getPodcasts {\n    podcasts {\n      id\n      title\n      slug\n      image_url\n    }\n  }\n"): (typeof documents)["\n  query getPodcasts {\n    podcasts {\n      id\n      title\n      slug\n      image_url\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
