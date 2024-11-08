@@ -9,9 +9,13 @@ const config: CodegenConfig = {
       },
     },
   },
-  documents: "**/*.graphql",
+  documents: [
+    "components/**/*.query.ts",
+    "components/**/*.mutate.ts",
+    "queries/**/*.query.ts",
+  ],
   generates: {
-    "./app/generated/": {
+    "utils/codegen/": {
       preset: "client",
       plugins: [],
     },

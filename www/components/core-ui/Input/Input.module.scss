@@ -1,0 +1,6 @@
+.sr_input {
+  &:not(:placeholder-shown) ~ label,
+  &:focus ~ label {
+    top: 25%;
+  }
+}

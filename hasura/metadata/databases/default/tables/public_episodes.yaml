@@ -30,7 +30,7 @@ select_permissions:
         - chapters_type
         - chapters_url
         - episode_type
-        - image_href
+        - image_url
         - link
         - media_type
         - media_url

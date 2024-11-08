@@ -1,33 +1,25 @@
-import { cookies } from "next/headers";
-import { fetchGraphQL } from "../../../utils/urlq/fetchGraphQL";
-import { PODCASTSQUERY } from "../../../utils/urlq/queries";
-import { redirect } from "next/navigation";
-import LogOutButton from "../../../components/logout";
+import LogoutButton from "@components/LogoutButton";
+import { getPodcasts } from "@queries";
+import { fetchGraphQL } from "@utils/urlq";
+import { PodcastMenu } from "@components/dashboard-ui/podcastMenu/PodcastMenu";
+
 export default async function Dashboard() {
-  const cookieStore = cookies();
-  const authToken = cookieStore.get("authToken")?.value;
-  const data = await fetchGraphQL(PODCASTSQUERY);
+  /*   const imlndata = {
+    title: "test title",
+  }; */
+  const data = await fetchGraphQL(getPodcasts);
 
-  if (!authToken) {
-    redirect("/admin");
-  }
-
-  console.log(data);
   if (!data || !data.podcasts) {
-    return <div>No friends found</div>;
+    return <div>No podcasts found</div>;
   }
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        my podcasts
-        {data.podcasts.map((podcast: { id: number; title: string }) => (
-          <div className="capitalize " key={podcast.id}>
-            {podcast.title}
-          </div>
-        ))}
-        <LogOutButton />
-      </main>
-    </div>
+    <main className="flex flex-col items-center gap-8">
+      <div>iml network data component here</div>
+
+      <PodcastMenu podcasts={data.podcasts} />
+
+      <LogoutButton />
+    </main>
   );
 }

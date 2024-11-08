@@ -93,8 +93,56 @@ Now it's time to decide how the admin dashboard will function. First, we need to
 
 Once the admin logs in, they will be able to edit the network page data (this part will be kept for later). Below that, we will add a section for selecting a podcast.
 
-Under the **My Podcasts** header, the data returned from our database will display as "Podcast1 name" for the first RSS feed link, and "Podcast2 name" for the second. (For now, we will manually add test data to Hasura.) These will be clickable buttons that redirect to a link such as `/dashboard/podcast/`id`, where the admin can edit the podcast’s details.
+Under the **My Podcasts** header, the data returned from our database will display as "Podcast1 name" for the first RSS feed link, and "Podcast2 name" for the second. (For now, we will manually add test data to Hasura.) These will be clickable buttons that redirect to a link such as `/dashboard/podcast/`slug`, where the admin can edit the podcast’s details.
 
-Below the podcast data, the admin will also be able to select individual episodes. Each selected episode will redirect to a link like `/dashboard/podcast/`id`/episode/`id`, allowing further editing of the episode's details.
+Below the podcast data, the admin will also be able to select individual episodes. Each selected episode will redirect to a link like `/dashboard/podcast/`slug`/episode/`id`, allowing further editing of the episode's details.
 
 To achieve this structure, we will use **Dynamic Routes** from Next.js.
+
+## Chapter 7: Graphql Mutation
+
+In order to be able to do mutations we need to fix the client provider for urql amd securely authenticate requests from the admin dashboard to Hasura, we implemented JSON Web Tokens (JWT) to handle authorization for GraphQL queries and mutations.
+
+### Setting Up JWT Authentication
+
+Hasura requires a valid JWT to authenticate requests. We needed a method to generate and validate these tokens to ensure that only the admin can access or modify data through the GraphQL API. The following steps outline the JWT configuration process:
+
+1. **Generate and Sign JWT**: In our login API (`/api/login`), we generate a signed JWT upon successful login. We include custom claims to set the user’s role and other permissions:
+
+   - The JWT payload includes:
+     - `role`: specifies the role as "admin"
+     - `https://hasura.io/jwt/claims`: contains Hasura-specific claims, such as `x-hasura-allowed-roles` (e.g., "admin") and `x-hasura-default-role` ("admin")
+
+   ```javascript
+   const token = jwt.sign(
+     {
+       role: "admin",
+       "https://hasura.io/jwt/claims": {
+         "x-hasura-allowed-roles": ["admin"],
+         "x-hasura-default-role": "admin",
+       },
+     },
+     process.env.JWT_SECRET,
+     { expiresIn: "1h" }
+   );
+   ```
+
+2. Configure Hasura for JWT Verification: We added the necessary environment variable to Hasura to accept and verify the JWT with the provided JWT_SECRET. This allows Hasura to automatically parse the token’s payload and enforce role-based permissions on API requests.
+
+- Set the HASURA_GRAPHQL_JWT_SECRET environment variable in Hasura, using the same secret key as in our application.
+
+3. Client-Side Integration: We modified our Next.js components to retrieve the JWT and include it in GraphQL requests:
+
+- In ClientProvider, the authToken cookie is passed in the Authorization header as a Bearer token.
+- When making GraphQL requests, Hasura verifies the token’s validity and permissions based on the claims.
+
+### Troubleshooting JWSError JWSInvalidSignature
+
+Initially, we encountered an issue where Hasura returned an invalid signature error (JWSError JWSInvalidSignature). The issue was resolved by ensuring the following:
+
+- The JWT secret used in both Hasura and the app matched exactly.
+- The authToken was being correctly retrieved from cookies and added to headers in client requests.
+
+Once configured correctly, JWT authentication allowed us to securely restrict access to Hasura, ensuring only authenticated requests from the admin dashboard were authorized to make changes to the database.
+
+## Chapter 8: Build the Dash
