@@ -43,7 +43,7 @@ export const PodcastMenu = ({ podcasts }: PodcastMenuProps) => {
       {!podcasts ? (
         <div>no podcasts</div>
       ) : (
-        <div className="xs:grid-cols-2 grid gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div className="xs:grid-cols-2 grid gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
           {podcasts.map((podcast) => (
             <PodcastLink key={podcast.id} podcast={podcast} />
           ))}
