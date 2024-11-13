@@ -1,8 +1,8 @@
-import Slugify from "@utils/Slugify/Slugify";
+import { slugify } from "@utils/slugify/slugify";
 
 export const simplifyPodcastData = (data: any) => {
   const podcast = data?.rss?.channel;
-  const podslug = Slugify(podcast?.title);
+  const podslug = slugify(podcast?.title);
   return {
     podcast: {
       id: podcast["podcast:guid"],
@@ -24,7 +24,7 @@ export const simplifyPodcastData = (data: any) => {
       image_title: podcast?.image?.title,
       image_link: podcast?.image?.link,
       categories: podcast["itunes:category"]?.map(
-        (category: any) => category?.text
+        (category: any) => category?.text,
       ),
       author: podcast["itunes:author"],
       keywords: podcast["itunes:keywords"]?.split(", "),
@@ -42,7 +42,7 @@ export const simplifyPodcastData = (data: any) => {
         media_url: episode?.enclosure.url,
         media_length: episode?.enclosure?.length,
         media_type: episode?.enclosure?.type,
-        image_link: episode["itunes:image"]?.href,
+        image_url: episode["itunes:image"]?.href,
         keywords: episode["itunes:keywords"]?.split(", "),
         persons: episode["podcast:person"]?.map((person: any) => ({
           name: person["_"],

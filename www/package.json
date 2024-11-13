@@ -20,7 +20,8 @@
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.80.4",
-    "urql": "^4.1.0"
+    "urql": "^4.1.0",
+    "wb-rss-parser": "github:koutsosg/wb-rss-parser"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.3",

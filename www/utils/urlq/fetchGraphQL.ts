@@ -1,5 +1,5 @@
 import { getRscClient } from "./server";
-import { DocumentNode } from "graphql"; // Import the DocumentNode type
+import { DocumentNode } from "graphql";
 
 export async function fetchGraphQL<T = any>(
   query: DocumentNode | string, // Allow both DocumentNode and string

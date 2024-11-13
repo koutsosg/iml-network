@@ -8,6 +8,7 @@ const makeClient = () => {
       headers: {
         "x-hasura-admin-secret": process.env.HASURA_ADMIN_SECRET as string,
       },
+      /*  cache: "no-store", */
     },
     exchanges: [cacheExchange, fetchExchange],
   });

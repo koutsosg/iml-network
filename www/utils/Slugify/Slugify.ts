@@ -1,4 +1,4 @@
-const Slugify = (text: string) => {
+export const slugify = (text: string) => {
   const map: { [key: string]: string } = {
     α: "a",
     β: "b",
@@ -47,4 +47,3 @@ const Slugify = (text: string) => {
     .replace(/[^\w\-]+/g, "")
     .replace(/\-\-+/g, "-");
 };
-export default Slugify;

@@ -1,7 +1,8 @@
+import { ImlForm } from "@components/dashboard-ui/client";
+import { PodcastMenu } from "@components/dashboard-ui/server";
 import LogoutButton from "@components/LogoutButton";
 import { getPodcasts } from "@queries";
 import { fetchGraphQL } from "@utils/urlq";
-import { PodcastMenu } from "@components/dashboard-ui/podcastMenu/PodcastMenu";
 
 export default async function Dashboard() {
   /*   const imlndata = {
@@ -14,12 +15,11 @@ export default async function Dashboard() {
   }
 
   return (
-    <main className="flex flex-col items-center gap-8">
-      <div>iml network data component here</div>
-
+    <>
+      <ImlForm />
       <PodcastMenu podcasts={data.podcasts} />
 
       <LogoutButton />
-    </main>
+    </>
   );
 }

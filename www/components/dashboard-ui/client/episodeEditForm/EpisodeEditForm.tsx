@@ -5,20 +5,16 @@ import { Button, InputField, TextAreaField } from "@components/core-ui";
 import { useEpisodeForm } from "@hooks";
 
 export const EpisodeEditForm = ({ episode }: EpisodeEditFormProps) => {
-  const { formData, updateResult, handleChange, handleSubmit } =
+  const { formData, isLoading, handleChange, handleSubmit } =
     useEpisodeForm(episode);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 capitalize">
       <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
         <h1 className="line-clamp-2 content-center text-lg font-semibold sm:text-xl md:text-2xl">
-          {formData.title}
+          {episode.title}
         </h1>
-        <Button
-          isLoading={updateResult.fetching}
-          disabled={updateResult.fetching}
-          spinner={true}
-        >
+        <Button isLoading={isLoading} disabled={isLoading} spinner={true}>
           Update Episode
         </Button>
       </div>
