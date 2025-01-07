@@ -1,4 +1,4 @@
-import { slugify } from "@utils/slugify/slugify";
+import { slugify } from "@utils/slugify/slugifier";
 
 export const simplifyPodcastData = (data: any) => {
   const podcast = data?.rss?.channel;
