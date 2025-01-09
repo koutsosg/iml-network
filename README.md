@@ -43,7 +43,7 @@ We needed a way to fetch and edit the podcast data while adding additional infor
 
 ### Method
 
-We created an RSS parser library to pull the necessary data from Transistor’s RSS feed. This library extracts the episode titles, descriptions, and other metadata from the feed, which we later find a way to store in our own database, allowing us to enrich the content with additional information.
+We created an [RSS parser library](https://github.com/koutsosg/wb-rss-parser) to pull the necessary data from Transistor’s RSS feed. This library extracts the episode titles, descriptions, and other metadata from the feed, which we later find a way to store in our own database, allowing us to enrich the content with additional information.
 
 ---
 
@@ -65,8 +65,8 @@ To make sure only the admin has access to the dashboard, we needed to implement 
 
 Since we didn't want a login system for general users, the best way to manage access control for the admin dashboard was by implementing session-based authentication. To keep the process simple, I chose to use an HTTP-only cookie to store the JWT. This is secure and easy to implement.
 
-- I created an API route (`/api/login`) that verifies credentials and sets the JWT token using `cookies()` from `next/headers`. The credentials are stored in an `.env` file.
-- The frontend uses a `LogIn` component, a client-side form that sends the credentials to the `/api/login` route. After successful authentication, it handles the response and redirects the admin from the login page to the dashboard.
+- I created an API route [(`/api/login`)](https://github.com/koutsosg/iml-network/blob/main/www/app/api/login/route.js) that verifies credentials and sets the JWT token using `cookies()` from `next/headers`. The credentials are stored in an `.env` file.
+- The frontend uses a [`LogIn component`](https://github.com/koutsosg/iml-network/blob/main/www/components/dashboard-ui/loginform/LoginForm.tsx), a client-side form that sends the credentials to the `/api/login` route. After successful authentication, it handles the response and redirects the admin from the login page to the dashboard.
 - **Authentication Check**: Other parts of the app, such as the dashboard, check for the `authToken` cookie using `cookies()` in server-side components. The token is verified using `jsonwebtoken`. If the token is not present, the user is redirected to the login page.
 
 ## Chapter 5: Hasura Database
@@ -85,23 +85,9 @@ The RSS feed provides essential data for the podcasts, including an array of epi
 
 This is where Hasura's console proves useful once again. It offers a raw SQL functionality, allowing us to write and execute SQL code to build the necessary tables efficiently.
 
-## Chapter 6: Dashboard
+## Chapter 6: Graphql Mutation
 
-Now it's time to decide how the admin dashboard will function. First, we need to initialize the basic structure.
-
-### Functionality
-
-Once the admin logs in, they will be able to edit the network page data (this part will be kept for later). Below that, we will add a section for selecting a podcast.
-
-Under the **My Podcasts** header, the data returned from our database will display as "Podcast1 name" for the first RSS feed link, and "Podcast2 name" for the second. (For now, we will manually add test data to Hasura.) These will be clickable buttons that redirect to a link such as `/dashboard/podcast/`slug`, where the admin can edit the podcast’s details.
-
-Below the podcast data, the admin will also be able to select individual episodes. Each selected episode will redirect to a link like `/dashboard/podcast/`slug`/episode/`id`, allowing further editing of the episode's details.
-
-To achieve this structure, we will use **Dynamic Routes** from Next.js.
-
-## Chapter 7: Graphql Mutation
-
-In order to be able to do mutations we need to fix the client provider for urql amd securely authenticate requests from the admin dashboard to Hasura, we implemented JSON Web Tokens (JWT) to handle authorization for GraphQL queries and mutations.
+In order to be able to do mutations we need to fix the client provider for urql and securely authenticate requests from the admin dashboard to Hasura, we implemented JSON Web Tokens (JWT) to handle authorization for GraphQL queries and mutations.
 
 ### Setting Up JWT Authentication
 
@@ -133,8 +119,18 @@ Hasura requires a valid JWT to authenticate requests. We needed a method to gene
 
 3. Client-Side Integration: We modified our Next.js components to retrieve the JWT and include it in GraphQL requests:
 
-- In ClientProvider, the authToken cookie is passed in the Authorization header as a Bearer token.
+- In ClientProvider, the `authToken` cookie is passed in the Authorization header as a Bearer token.
 - When making GraphQL requests, Hasura verifies the token’s validity and permissions based on the claims.
+
+**Redirecting Based on Authentication**
+
+The application enforces authentication through the following redirection logic:
+
+- The login form is accessible at [`/admin`](<https://github.com/koutsosg/iml-network/tree/main/www/app/(pages)/(admin)/admin>). After successful authentication, the user is redirected to [`/dashboard`](<https://github.com/koutsosg/iml-network/tree/main/www/app/(pages)/(admin)/dashboard>).
+- If an unauthenticated user attempts to access `/dashboard`, they are automatically redirected back to `/admin`.
+- Similarly, if the `authToken` is missing or invalid, the user is also redirected to `/admin`.
+
+This ensures that only authorized users can access the admin dashboard while providing a secure and seamless experience.
 
 ### Troubleshooting JWSError JWSInvalidSignature
 
@@ -145,4 +141,21 @@ Initially, we encountered an issue where Hasura returned an invalid signature er
 
 Once configured correctly, JWT authentication allowed us to securely restrict access to Hasura, ensuring only authenticated requests from the admin dashboard were authorized to make changes to the database.
 
-## Chapter 8: Build the Dash
+## Chapter 7: Building The Dashboard
+
+Now it's time to decide how the admin dashboard will function. First, we need to initialize the basic structure.
+
+### Functionality
+
+Once the admin logs in, they will be able to edit the network page data (this part will be kept for later). Below that, we will add a section for selecting a podcast.
+
+Under the **My Podcasts** header, the data returned from our database will display as "Podcast1 name" for the first RSS feed link, and "Podcast2 name" for the second. (For now, we will manually add test data to Hasura.) These will be clickable buttons that redirect to a link such as [`/dashboard/podcast/slug`](<https://github.com/koutsosg/iml-network/tree/main/www/app/(pages)/(admin)/dashboard/podcast/%5Bslug%5D>), where the admin can edit the podcast’s details.
+
+Below the podcast data, the admin will also be able to select individual episodes. Each selected episode will redirect to a link like [`/dashboard/podcast/pod_slug/episode/id`](<https://github.com/koutsosg/iml-network/tree/main/www/app/(pages)/(admin)/dashboard/podcast/%5Bslug%5D/episode/%5Bid%5D>), allowing further editing of the episode's details.
+
+To achieve this structure, we will use **Dynamic Routes** from Next.js.
+
+### [The Podcast Page](<https://github.com/koutsosg/iml-network/blob/main/www/app/(pages)/(admin)/dashboard/podcast/%5Bslug%5D/page.tsx>)
+
+Here we fetched the podcast data from Hasura and passed them to two different componets, the top one is a [form](https://github.com/koutsosg/iml-network/tree/main/www/components/dashboard-ui/client/episodeEditForm) in case we want to edit the data of the podcast
+and the bottom is a [list](https://github.com/koutsosg/iml-network/tree/main/www/components/dashboard-ui/client/episodeList) with all the episodes and each episode is a url that will redirect as in the episode page.
